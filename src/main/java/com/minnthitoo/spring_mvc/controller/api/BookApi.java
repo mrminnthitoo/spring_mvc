@@ -2,10 +2,9 @@ package com.minnthitoo.spring_mvc.controller.api;
 
 import com.minnthitoo.spring_mvc.controller.api.exception.BeanValidationException;
 import com.minnthitoo.spring_mvc.controller.api.exception.BookNotFoundException;
-import com.minnthitoo.spring_mvc.model.dao.BookDao;
+import com.minnthitoo.spring_mvc.model.dto.BookDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
@@ -19,10 +18,10 @@ import java.util.List;
 public interface BookApi {
 
     @GetMapping("books")
-    List<BookDao> getAllBook();
+    List<BookDto> getAllBook();
 
     @PostMapping("books")
-    ResponseEntity<BookDao> createBook(@Valid @RequestBody BookDao book, BindingResult bindingResult) throws BeanValidationException;
+    ResponseEntity<BookDto> createBook(@Valid @RequestBody BookDto book, BindingResult bindingResult) throws BeanValidationException;
 
     @Operation(summary = "get a book by its id")
     @ApiResponses(value = {
@@ -34,12 +33,12 @@ public interface BookApi {
                     content = @Content),
     })
     @GetMapping("/books/{bookId}")
-    ResponseEntity<BookDao> getBookById(@PathVariable("bookId") Long bookId) throws BookNotFoundException;
+    ResponseEntity<BookDto> getBookById(@PathVariable("bookId") Long bookId) throws BookNotFoundException;
 
     @PutMapping("books/{bookId}")
-    ResponseEntity<BookDao> updateBook(@PathVariable("bookId") Long bookId, @Valid @RequestBody BookDao book, BindingResult bindingResult) throws BookNotFoundException, BeanValidationException;
+    ResponseEntity<BookDto> updateBook(@PathVariable("bookId") Long bookId, @Valid @RequestBody BookDto book, BindingResult bindingResult) throws BookNotFoundException, BeanValidationException;
 
     @DeleteMapping("books/{bookId}")
-    ResponseEntity<BookDao> deleteBook(@PathVariable("bookId") Long bookId) throws BookNotFoundException;
+    ResponseEntity<BookDto> deleteBook(@PathVariable("bookId") Long bookId) throws BookNotFoundException;
 
 }

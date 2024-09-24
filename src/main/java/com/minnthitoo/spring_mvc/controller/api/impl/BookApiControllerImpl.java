@@ -3,7 +3,7 @@ package com.minnthitoo.spring_mvc.controller.api.impl;
 import com.minnthitoo.spring_mvc.controller.api.BookApi;
 import com.minnthitoo.spring_mvc.controller.api.exception.BeanValidationException;
 import com.minnthitoo.spring_mvc.controller.api.exception.BookNotFoundException;
-import com.minnthitoo.spring_mvc.model.dao.BookDao;
+import com.minnthitoo.spring_mvc.model.dto.BookDto;
 import com.minnthitoo.spring_mvc.service.BookService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -29,13 +29,13 @@ public class BookApiControllerImpl implements BookApi {
     private BookService bookService;
 
     @Override
-    public List<BookDao> getAllBook() {
+    public List<BookDto> getAllBook() {
         return this.bookService.getAllBooks();
     }
 
     @Override
-    public ResponseEntity<BookDao> getBookById(Long bookId) throws BookNotFoundException {
-        Optional<BookDao> book = this.bookService.getBookById(bookId);
+    public ResponseEntity<BookDto> getBookById(Long bookId) throws BookNotFoundException {
+        Optional<BookDto> book = this.bookService.getBookById(bookId);
         if (book.isPresent()) {
             return ResponseEntity.ok(book.get());
         }else{
@@ -44,13 +44,14 @@ public class BookApiControllerImpl implements BookApi {
     }
 
     @Override
-    public ResponseEntity<BookDao> createBook(@Valid @RequestBody BookDao book, BindingResult bindingResult) throws BeanValidationException {
+    public ResponseEntity<BookDto> createBook(@Valid @RequestBody BookDto book, BindingResult bindingResult) throws BeanValidationException {
 
 
 
         if (!bindingResult.hasErrors()){
-            this.bookService.addBook(book);
-            return ResponseEntity.status(HttpStatusCode.valueOf(201)).body(book);
+            BookDto bookDto = this.bookService.addBook(book);
+            log.info(bookDto.toString());
+            return ResponseEntity.status(HttpStatusCode.valueOf(201)).body(bookDto);
         }else{
             List<FieldError> fieldErrors = bindingResult.getFieldErrors();
             Map<String, String> errors = new HashMap<>();
@@ -63,14 +64,14 @@ public class BookApiControllerImpl implements BookApi {
     }
 
     @Override
-    public ResponseEntity<BookDao> updateBook(@PathVariable("bookId") Long bookId, @Valid @RequestBody BookDao book, BindingResult bindingResult) throws BookNotFoundException, BeanValidationException {
+    public ResponseEntity<BookDto> updateBook(@PathVariable("bookId") Long bookId, @Valid @RequestBody BookDto book, BindingResult bindingResult) throws BookNotFoundException, BeanValidationException {
         if (bindingResult.hasErrors()){
             throw new BeanValidationException(bindingResult.getAllErrors());
         }else {
-            Optional<BookDao> bookDao = this.bookService.getBookById(bookId);
+            Optional<BookDto> bookDao = this.bookService.getBookById(bookId);
             if (bookDao.isPresent()) {
-                this.bookService.updateBook(book);
-                return ResponseEntity.ok(bookDao.get());
+                BookDto bookDto = this.bookService.updateBook(book);
+                return ResponseEntity.ok(bookDto);
             }else {
                 throw new BookNotFoundException("Book not found");
             }
@@ -78,8 +79,8 @@ public class BookApiControllerImpl implements BookApi {
     }
 
     @Override
-    public ResponseEntity<BookDao> deleteBook(@PathVariable Long bookId) throws BookNotFoundException {
-        Optional<BookDao> book = this.bookService.getBookById(bookId);
+    public ResponseEntity<BookDto> deleteBook(@PathVariable Long bookId) throws BookNotFoundException {
+        Optional<BookDto> book = this.bookService.getBookById(bookId);
         if (book.isPresent()) {
             this.bookService.deleteBook(book.get());
             return ResponseEntity.ok(book.get());
