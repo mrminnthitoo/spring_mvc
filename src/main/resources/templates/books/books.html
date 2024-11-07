@@ -2,9 +2,11 @@
 <head>
     <title>Books</title>
     <link th:rel="stylesheet" th:href="@{bootstrap/css/bootstrap.min.css}">
+    <script th:src="@{bootstrap/js/bootstrap.bundle.min.js}"></script>
 </head>
 <body>
     <div class="container">
+        <nav th:replace="~{common/header :: navbar}"></nav>
         <h1>Books</h1>
         <table class="table table-dark table-striped">
             <thead>
