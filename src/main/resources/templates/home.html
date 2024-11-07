@@ -1,9 +1,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Home</title>
-    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+    <link th:rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <script th:src="@{/bootstrap/css/bootstrap.bundle.min.css}"></script>
 </head>
 <body>
+    <nav th:replace="~{/common/header :: navbar}"></nav>
     <h1>Welcome to Spring ...</h1>
     <img th:src="@{images/spring.png}" alt="" height="200px">
 </body>

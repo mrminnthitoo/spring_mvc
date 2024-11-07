@@ -21,4 +21,9 @@ public class BookServiceImpl implements BookService {
     public List<BookDto> getAllBooks() {
         return this.books;
     }
+
+    @Override
+    public void saveBook(BookDto book) {
+        this.books.add(book);
+    }
 }
