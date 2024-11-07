@@ -8,6 +8,9 @@
     <h1>View Demo</h1>
     <h2 th:text="${message}">Hello</h2>
     <p th:text="#{view.greeting}"></p>
+    <p>
+        Today is : <span th:text="${#calendars.format(today, 'dd MMMM YYYY')}"></span>
+    </p>
 
 </div>
 </body>

@@ -1,0 +1,19 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Books</title>
+    <link th:rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <script th:src="@{/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</head>
+<body>
+<div class="container">
+    <nav th:replace="~{common/header :: navbar}"></nav>
+    <h1>Book</h1>
+    <div th:object="${book}">
+        <p>ID : <span th:text="*{id}"></span></p>
+        <p>Title : <span th:text="*{title}"></span></p>
+        <p>Author : <span th:text="*{author}"></span></p>
+        <p>Description : <span th:text="*{description}"></span></p>
+    </div>
+</div>
+</body>
+</html>
