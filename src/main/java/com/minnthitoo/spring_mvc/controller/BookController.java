@@ -1,5 +1,6 @@
 package com.minnthitoo.spring_mvc.controller;
 
+import com.minnthitoo.spring_mvc.controller.validator.BookValidator;
 import com.minnthitoo.spring_mvc.model.BookDto;
 import com.minnthitoo.spring_mvc.service.BookService;
 import jakarta.validation.Valid;
@@ -11,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.util.RouteMatcher;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,6 +25,14 @@ public class BookController {
 
     @Autowired
     private BookService bookService;
+
+    @Autowired
+    private BookValidator bookValidator;
+
+    @InitBinder
+    private void initBinder(WebDataBinder binder){
+        binder.setValidator(bookValidator);
+    }
 
     @GetMapping
     String getAllBooks(Model model){
@@ -39,9 +50,28 @@ public class BookController {
         return "books/new";
     }
 
+    /*
     // save book
     @PostMapping("/new")
     String saveBook(Model model, @Valid @ModelAttribute("book") BookDto book, BindingResult result){
+        if (!result.hasErrors()){
+            this.bookService.saveBook(book);
+            return "redirect:/books";
+
+        }else {
+            for (ObjectError error : result.getAllErrors()){
+                log.info("Error {}", error.getDefaultMessage());
+            }
+            model.addAttribute("book", book);
+            return "books/new";
+        }
+    }
+
+     */
+
+    // save book with custom validator
+    @PostMapping("/new")
+    String saveBook(Model model, @Validated @ModelAttribute("book") BookDto book, BindingResult result){
         if (!result.hasErrors()){
             this.bookService.saveBook(book);
             return "redirect:/books";
