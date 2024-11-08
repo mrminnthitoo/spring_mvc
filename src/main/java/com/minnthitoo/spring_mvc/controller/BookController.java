@@ -11,10 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.RouteMatcher;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -56,6 +53,14 @@ public class BookController {
             model.addAttribute("book", book);
             return "books/new";
         }
+    }
+
+    // edit page
+    @GetMapping("/{bookId}")
+    String editBook(@PathVariable Integer bookId, Model model){
+        BookDto book = this.bookService.getBookById(bookId);
+        model.addAttribute("book", book);
+        return "/books/new";
     }
 
 }

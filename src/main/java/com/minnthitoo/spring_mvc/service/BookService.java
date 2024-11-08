@@ -7,4 +7,5 @@ import java.util.List;
 public interface BookService {
     List<BookDto> getAllBooks();
     void saveBook(BookDto book);
+    BookDto getBookById(Integer bookId);
 }

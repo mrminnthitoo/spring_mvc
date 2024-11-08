@@ -26,4 +26,9 @@ public class BookServiceImpl implements BookService {
     public void saveBook(BookDto book) {
         this.books.add(book);
     }
+
+    @Override
+    public BookDto getBookById(Integer bookId) {
+        return null;
+    }
 }
