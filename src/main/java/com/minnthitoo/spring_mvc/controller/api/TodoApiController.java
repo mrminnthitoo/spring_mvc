@@ -27,7 +27,7 @@ public class TodoApiController {
     List<TodoDto> getAllTodos(){
         log.info("/api/todos Thread name {}", Thread.currentThread().getName());
         try{
-//            Thread.sleep(5_000);
+//            Thread.sleep(2_000);
         }
         catch (Exception e) {
             e.printStackTrace();
