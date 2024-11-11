@@ -1,6 +1,6 @@
 package com.minnthitoo.spring_mvc.controller.api;
 
-import com.minnthitoo.spring_mvc.model.BookDto;
+import com.minnthitoo.spring_mvc.model.dto.BookDto;
 import com.minnthitoo.spring_mvc.service.BookService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

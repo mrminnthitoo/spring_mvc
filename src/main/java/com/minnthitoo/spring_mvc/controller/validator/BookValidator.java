@@ -1,6 +1,6 @@
 package com.minnthitoo.spring_mvc.controller.validator;
 
-import com.minnthitoo.spring_mvc.model.BookDto;
+import com.minnthitoo.spring_mvc.model.dto.BookDto;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;

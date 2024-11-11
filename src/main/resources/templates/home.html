@@ -1,28 +1,29 @@
-<!--<!DOCTYPE>-->
-<!--<html-->
-<!--        xmlns="http://www.w3.org/1999/xhtml"-->
-<!--        xmlns:th="htp://www.thymeleaf.org"-->
-<!--        xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"-->
-<!--        lang="en"-->
-<!--        layout:decorate="fragments/layout"-->
-<!--&gt;-->
-<!--    <body>-->
-<!--        <div layout:fragment="content">-->
-<!--            <h1>Start</h1>-->
-<!--        </div>-->
-<!--    </body>-->
-<!--</html>-->
-
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Demo</title>
-    <link th:rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
-    <script th:src="@{/bootstrap/js/bootstrap.bundle.min.js}"></script>
-</head>
-<body class="container">
-    <nav th:replace="~{common/header :: navbar}"></nav>
-    <div>&nbsp;</div>
-    <h2>Welcome from Spring Boot ...</h2>
-    <img th:src="@{/images/spring.png}" alt="">
-</body>
+<!--<!DOCTYPE html>-->
+<html
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org"
+        layout:decorate="~{fragments/layout.html}"
+        lang="en"
+>
+    <body>
+        <main layout:fragment="content">
+            <p th:text="Hello"></p>
+            <h1>Start</h1>
+        </main>
+    </body>
 </html>
+
+<!--<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Demo</title>-->
+<!--    <link th:rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">-->
+<!--    <script th:src="@{/bootstrap/js/bootstrap.bundle.min.js}"></script>-->
+<!--</head>-->
+<!--<body class="container">-->
+<!--    <nav th:replace="~{common/header :: navbar}"></nav>-->
+<!--    <div>&nbsp;</div>-->
+<!--    <h2>Welcome from Spring Boot ...</h2>-->
+<!--    <img th:src="@{/images/spring.png}" alt="">-->
+<!--</body>-->
+<!--</html>-->

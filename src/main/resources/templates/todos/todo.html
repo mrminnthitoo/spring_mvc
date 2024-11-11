@@ -1,0 +1,34 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>TODOs</title>
+    <link th:rel="stylesheet" th:href="@{bootstrap/css/bootstrap.min.css}">
+    <script th:src="@{bootstrap/js/bootstrap.bundle.min.js}"></script>
+</head>
+<body>
+<div class="container">
+    <nav th:replace="~{common/header :: navbar}"></nav>
+<!--    <a class="btn btn-success mt-2" th:href="@{/books/new}">New Book</a>-->
+    <h1>TODOs from Remote Server</h1>
+    <table class="table table-dark table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>USER ID</th>
+            <th>Title</th>
+            <th>COMPLETED</th>
+        </tr>
+        </thead>
+        <tbody>
+            <th:block th:each="todo : ${todos}">
+                <tr>
+                    <td th:text="${todo.id}"></td>
+                    <td th:text="${todo.userId}"></td>
+                    <td th:text="${todo.title}"></td>
+                    <td th:text="${todo.completed}"></td>
+                </tr>
+            </th:block>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

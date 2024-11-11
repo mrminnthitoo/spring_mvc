@@ -1,4 +1,4 @@
-package com.minnthitoo.spring_mvc.model;
+package com.minnthitoo.spring_mvc.model.dto;
 
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;

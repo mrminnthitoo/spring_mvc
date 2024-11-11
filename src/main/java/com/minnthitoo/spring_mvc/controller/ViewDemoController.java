@@ -1,6 +1,6 @@
 package com.minnthitoo.spring_mvc.controller;
 
-import com.minnthitoo.spring_mvc.model.BookDto;
+import com.minnthitoo.spring_mvc.model.dto.BookDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

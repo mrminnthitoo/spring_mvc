@@ -1,11 +1,12 @@
 package com.minnthitoo.spring_mvc.service.impl;
 
-import com.minnthitoo.spring_mvc.model.BookDto;
+import com.minnthitoo.spring_mvc.model.dto.BookDto;
 import com.minnthitoo.spring_mvc.service.BookService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -28,7 +29,27 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public BookDto getBookById(Integer bookId) {
-        return null;
+    public Optional<BookDto> getBookById(Long bookId) {
+        BookDto book = null;
+        for (BookDto bookDto : this.books) {
+            if (bookDto.getId().equals(bookId)) {
+                book = bookDto;
+                break;
+            }
+        }
+        return book == null ? Optional.empty() : Optional.of(book);
+    }
+
+    @Override
+    public void updateBook(BookDto book) {
+        BookDto bookToUpdate = this.getBookById(book.getId()).get();
+        bookToUpdate.setTitle(book.getTitle());
+        bookToUpdate.setAuthor(book.getAuthor());
+        bookToUpdate.setDescription(book.getDescription());
+    }
+
+    @Override
+    public void deleteBook(BookDto book) {
+        this.books.remove(book);
     }
 }

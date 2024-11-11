@@ -8,7 +8,7 @@
 <div class="container">
     <nav th:replace="~{common/header :: navbar}"></nav>
     <h3>New Book</h3>
-    <form method="POST" th:action="@{/books/new}" th:object="${book}">
+    <form method="POST" th:action="${edit} ? @{/books/update} : @{book/new}" th:object="${book}">
         <div class="form-group">
             <label for="id" class="form-label">ID</label>
             <input type="text" name="id" id="id" th:field="*{id}" class="form-control">
