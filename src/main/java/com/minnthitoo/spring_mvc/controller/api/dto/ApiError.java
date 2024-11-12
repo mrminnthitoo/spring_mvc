@@ -3,10 +3,7 @@ package com.minnthitoo.spring_mvc.controller.api.dto;
 import lombok.Data;
 import org.springframework.http.HttpStatusCode;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Data
 public class ApiError {

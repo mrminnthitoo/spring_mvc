@@ -1,33 +1,26 @@
 package com.minnthitoo.spring_mvc.controller.api;
 
+import com.minnthitoo.spring_mvc.controller.api.exception.BeanValidationException;
 import com.minnthitoo.spring_mvc.controller.api.exception.BookNotFoundException;
 import com.minnthitoo.spring_mvc.model.dto.BookDto;
-import com.minnthitoo.spring_mvc.service.BookService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
-@Slf4j
-@RestController
 @RequestMapping("api/books")
-public class BookApiController {
-
-    @Autowired
-    private BookService bookService;
+public interface BookApiController {
 
     @GetMapping()
-    List<BookDto> getAllBooks(){
-        return this.bookService.getAllBooks();
-    }
+    List<BookDto> getAllBooks();
 
 
     @Operation(summary = "Get a book by its id")
@@ -41,13 +34,15 @@ public class BookApiController {
                     content = @Content),
     })
     @GetMapping("/{bookId}")
-    ResponseEntity<BookDto> getBookById(@PathVariable Long bookId) throws BookNotFoundException{
-        Optional<BookDto> result = this.bookService.getBookById(bookId);
-        if (result.isPresent()){
-            return ResponseEntity.ok(result.get());
-        }else{
-            throw new BookNotFoundException("book id " + bookId + " not found");
-        }
-    }
+    ResponseEntity<BookDto> getBookById(@PathVariable Long bookId) throws BookNotFoundException;
+
+    @PostMapping
+    ResponseEntity<BookDto> createBook(@Valid @RequestBody BookDto book, BindingResult result) throws BeanValidationException;
+
+    @PutMapping("/{bookId}")
+    ResponseEntity<BookDto> updateBook(@PathVariable Long bookId, @Valid @RequestBody BookDto bookDto, BindingResult result) throws BookNotFoundException, BeanValidationException;
+
+    @DeleteMapping("/{bookId}")
+    ResponseEntity<BookDto> deleteBook(@PathVariable Long bookId) throws BookNotFoundException;
 
 }

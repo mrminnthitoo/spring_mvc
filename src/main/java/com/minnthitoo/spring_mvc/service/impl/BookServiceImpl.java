@@ -24,8 +24,9 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void saveBook(BookDto book) {
+    public BookDto saveBook(BookDto book) {
         this.books.add(book);
+        return book;
     }
 
     @Override
@@ -41,15 +42,17 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void updateBook(BookDto book) {
+    public BookDto updateBook(BookDto book) {
         BookDto bookToUpdate = this.getBookById(book.getId()).get();
         bookToUpdate.setTitle(book.getTitle());
         bookToUpdate.setAuthor(book.getAuthor());
         bookToUpdate.setDescription(book.getDescription());
+        return bookToUpdate;
     }
 
     @Override
-    public void deleteBook(BookDto book) {
+    public BookDto deleteBook(BookDto book) {
         this.books.remove(book);
+        return book;
     }
 }
