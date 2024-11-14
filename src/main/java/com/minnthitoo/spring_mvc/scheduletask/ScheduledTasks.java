@@ -1,6 +1,7 @@
 package com.minnthitoo.spring_mvc.scheduletask;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -25,5 +26,16 @@ public class ScheduledTasks {
     @Scheduled(fixedDelay = 6000)
     public void scheduleFixedDelayTask(){
         log.info("Fixed delay task - {}", System.currentTimeMillis() / 1000);
+    }
+
+    @Async
+    @Scheduled(fixedRate = 1000)
+    public void asyncScheduleTask(){
+        log.info("Async The time is now {}", dateFormat.format(new Date()));
+        try{
+            Thread.sleep(3000);
+        }catch (Exception e){
+            e.printStackTrace();;
+        }
     }
 }
