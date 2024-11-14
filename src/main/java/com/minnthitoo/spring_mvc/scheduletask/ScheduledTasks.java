@@ -15,5 +15,10 @@ public class ScheduledTasks {
     @Scheduled(fixedRate = 5000)
     public void reportCurrentTime(){
         log.info("The time is now {}", dateFormat.format(new Date()));
+        try{
+            Thread.sleep(8000);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
