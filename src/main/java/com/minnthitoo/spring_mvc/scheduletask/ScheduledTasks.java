@@ -38,4 +38,10 @@ public class ScheduledTasks {
             e.printStackTrace();;
         }
     }
+
+    // run in 10th minute of every hour
+    @Scheduled(cron = "0 10 * * * ?")
+    public void cronScheduleTask(){
+        log.info("Async The time is now {}", dateFormat.format(new Date()));
+    }
 }
