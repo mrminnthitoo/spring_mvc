@@ -16,9 +16,14 @@ public class ScheduledTasks {
     public void reportCurrentTime(){
         log.info("The time is now {}", dateFormat.format(new Date()));
         try{
-            Thread.sleep(8000);
+//            Thread.sleep(8000);
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    @Scheduled(fixedDelay = 6000)
+    public void scheduleFixedDelayTask(){
+        log.info("Fixed delay task - {}", System.currentTimeMillis() / 1000);
     }
 }
