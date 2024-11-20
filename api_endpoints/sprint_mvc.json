@@ -1,0 +1,91 @@
+{
+  "v": 4,
+  "name": "sprint_mvc",
+  "folders": [
+    {
+      "v": 4,
+      "name": "books",
+      "folders": [],
+      "requests": [
+        {
+          "v": "8",
+          "endpoint": "http://localhost:8080/api/books",
+          "name": "get all books",
+          "params": [],
+          "headers": [],
+          "method": "GET",
+          "auth": { "authType": "inherit", "authActive": true },
+          "preRequestScript": "",
+          "testScript": "",
+          "body": { "contentType": null, "body": null },
+          "requestVariables": [],
+          "responses": {}
+        },
+        {
+          "v": "8",
+          "endpoint": "http://localhost:8080/api/books/1",
+          "name": "get specific books",
+          "params": [],
+          "headers": [],
+          "method": "GET",
+          "auth": { "authType": "inherit", "authActive": true },
+          "preRequestScript": "",
+          "testScript": "",
+          "body": { "contentType": null, "body": null },
+          "requestVariables": [],
+          "responses": {}
+        },
+        {
+          "v": "8",
+          "endpoint": "http://localhost:8080/api/books",
+          "name": "create book",
+          "params": [],
+          "headers": [],
+          "method": "POST",
+          "auth": { "authType": "inherit", "authActive": true },
+          "preRequestScript": "",
+          "testScript": "",
+          "body": { "contentType": "application/json", "body": "{\n}" },
+          "requestVariables": [],
+          "responses": {}
+        },
+        {
+          "v": "8",
+          "endpoint": "http://localhost:8080/api/books/1",
+          "name": "update book",
+          "params": [],
+          "headers": [],
+          "method": "PUT",
+          "auth": { "authType": "inherit", "authActive": true },
+          "preRequestScript": "",
+          "testScript": "",
+          "body": {
+            "contentType": "application/json",
+            "body": "{\n  \"id\" : \"1\",\n  \"title\" : \"Book 1 update\",\n  \"author\" : \"Author 1 update\",\n  \"description\" : \"Description 1 update\"\n}"
+          },
+          "requestVariables": [],
+          "responses": {}
+        },
+        {
+          "v": "8",
+          "endpoint": "http://localhost:8080/api/books/2",
+          "name": "delete book by id",
+          "params": [],
+          "headers": [],
+          "method": "DELETE",
+          "auth": { "authType": "inherit", "authActive": true },
+          "preRequestScript": "",
+          "testScript": "",
+          "body": { "contentType": null, "body": null },
+          "requestVariables": [],
+          "responses": {}
+        }
+      ],
+      "auth": { "authType": "inherit", "authActive": true },
+      "headers": []
+    }
+  ],
+  "requests": [],
+  "auth": { "authType": "none", "authActive": true },
+  "headers": []
+}
