@@ -1,0 +1,17 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Custom Login Page</title>
+  <link th:rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container">
+  <h1>Custom Logout Page</h1>
+  <h3>Are you sure want to log out?</h3>
+  <form th:action="@{/logout}" method="post">
+    <div class="form-group mt-3 text-center">
+      <button type="submit" class="btn btn-success">Logout</button>
+    </div>
+  </form>
+</div>
+</body>
+</html>
