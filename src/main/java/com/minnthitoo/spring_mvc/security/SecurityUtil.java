@@ -10,7 +10,7 @@ public class SecurityUtil {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    String getHash(String plainPassword){
+    public String getHash(String plainPassword){
         return this.passwordEncoder.encode(plainPassword);
     }
 

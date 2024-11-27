@@ -27,7 +27,7 @@ public class TestEncoder {
         user.setPassword(this.securityUtil.getHash("password"));
 
         Role role1 = new Role();
-        role1.setRole("USER");
+        role1.setRole("ROLE_USER");
         role1.setUser(user);
 
         user.getRoles().add(role1);
@@ -43,7 +43,7 @@ public class TestEncoder {
         user.setPassword(this.securityUtil.getHash("admin"));
 
         Role role1 = new Role();
-        role1.setRole("ADMIN");
+        role1.setRole("ROLE_ADMIN");
         role1.setUser(user);
 
         user.getRoles().add(role1);
