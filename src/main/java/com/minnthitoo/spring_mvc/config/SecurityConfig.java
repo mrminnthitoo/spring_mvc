@@ -22,6 +22,7 @@ public class SecurityConfig{
                         // open routes
                 .requestMatchers("/", "/home", "/bootstrap/**")
                         .permitAll()
+                        .requestMatchers("/register").hasRole("ADMIN")
                         // authenticated routes (other requests)
                         .anyRequest().authenticated()
         )

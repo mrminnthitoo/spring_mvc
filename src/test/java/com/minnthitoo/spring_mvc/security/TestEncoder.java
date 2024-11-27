@@ -35,5 +35,21 @@ public class TestEncoder {
         this.userDao.save(user);
     }
 
+    @Transactional
+    @Test
+    public void testAddAdmin(){
+        User user = new User();
+        user.setUsername("admin");
+        user.setPassword(this.securityUtil.getHash("admin"));
+
+        Role role1 = new Role();
+        role1.setRole("ADMIN");
+        role1.setUser(user);
+
+        user.getRoles().add(role1);
+
+        this.userDao.save(user);
+    }
+
 
 }
